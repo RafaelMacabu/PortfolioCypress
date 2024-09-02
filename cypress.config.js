@@ -1,6 +1,8 @@
+const { defineConfig } = require("cypress");
+
 module.exports = {
   e2e: {
-    baseUrl: 'https://www.google.com.br',
+    baseUrl: "https://serverest.dev",
     setupNodeEvents(on, config) {
       
     },
