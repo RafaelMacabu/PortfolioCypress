@@ -1,17 +1,10 @@
 /// <reference types="cypress" />
 
 import '../support/commandsAPI'
-
-function createRandomString(length) {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
+import * as utilities from '../support/utilities'
 
 describe('API', () => {
+  let userId
   beforeEach(() => {
     cy.getToken('fulano@qa.com', 'teste')
   })
@@ -28,14 +21,37 @@ describe('API', () => {
       method: 'POST',
       url: '/usuarios',
       body: {
-        "nome": "Fulano da Silva",
-        "email": `fulano${createRandomString(5)}@qa.com.br`,
+        "nome": "Rafael Macabu",
+        "email": `rafael${utilities.createRandomString(5)}@qa.com.br`,
         "password": "teste",
         "administrador": "true"
       }
     }).as('response')
-    
-    cy.get('@response').its('body.message').should('be.equal',"Cadastro realizado com sucesso")
-    cy.get('@response').its('body._id').should('exist')
+
+    cy.get('@response').then(response => {
+      expect(response.body.message).to.be.equal('Cadastro realizado com sucesso')
+      expect(response.body._id).to.exist
+
+      userId = response.body._id
+    })
+  })
+
+  it('GET Usuarios com id', () => {
+    cy.request({
+      method: 'GET',
+      url: `/usuarios/${userId}`
+    }).as('response')
+
+    cy.get('@response').then(response => {
+      expect(response.body.nome).to.be.equal('Rafael Macabu')
+      expect(response.body._id).to.be.equal(`${userId}`)
+    })
+  })
+
+  it('DELETE Usuarios', () => {
+    cy.request({
+      method: 'DELETE',
+      url: `/usuarios/${userId}`
+    }).its('body.message').should('be.equal','Registro excluído com sucesso')
   })
 })
