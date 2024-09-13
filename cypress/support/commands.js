@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.overwrite('request',(originalFn, ...options) => {
+    if(options.length == 1){
+        if(Cypress.env('auth')){
+            options[0].headers = {
+                Authorization: `${Cypress.env('auth')}`
+        }
+    }
+ }
+
+    return originalFn(...options)
+})
