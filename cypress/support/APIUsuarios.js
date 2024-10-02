@@ -19,11 +19,11 @@ Cypress.Commands.add('cadastrarUsuario',(user) => {
       }).as('response')
   
       cy.get('@response').then(response => {
-        expect(response.body.message).to.be.equal('Cadastro realizado com sucesso')
         expect(response.body._id).to.exist
-
         Cypress.env('userId',response.body._id)
       })
+
+      return cy.get('@response')
 })
 
 Cypress.Commands.add('getToken',() => {
@@ -42,14 +42,14 @@ Cypress.Commands.add('getToken',() => {
 })
 
 Cypress.Commands.add('loginUsuario',(email,senha) => {
-    cy.request({
+    return cy.request({
         method:'POST',
         url:'/login',
         body:{
             "email":email,
             "password":senha
         }
-    }).its('body.authorization').should('not.be.empty')
+    })
 })
 
 Cypress.Commands.add('editarUsuario',(user) => {

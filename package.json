@@ -1,6 +1,10 @@
 {
   "devDependencies": {
-    "cypress": "^13.14.1"
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "cypress": "^13.14.1",
+    "cypress-mochawesome-reporter": "^3.8.2"
   },
   "name": "projeto-cypress",
   "version": "1.0.0",

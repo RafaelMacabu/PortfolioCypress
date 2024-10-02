@@ -17,11 +17,12 @@ Cypress.Commands.add('cadastrarProduto',(produto) => {
     }).as('response')
 
     cy.get('@response').then(response => {
-      expect(response.body.message).to.be.equal('Cadastro realizado com sucesso')
       expect(response.body._id).to.exist
 
       Cypress.env('productId',response.body._id)
     })
+
+    return cy.get('@response')
 })
 
 Cypress.Commands.add('editarProduto',(produto) => {
