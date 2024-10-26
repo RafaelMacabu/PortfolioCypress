@@ -4,7 +4,8 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.3",
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
     "cypress": "^13.14.1",
-    "cypress-mochawesome-reporter": "^3.8.2"
+    "cypress-mochawesome-reporter": "^3.8.2",
+    "cypress-xpath": "^2.0.1"
   },
   "name": "projeto-cypress",
   "version": "1.0.0",

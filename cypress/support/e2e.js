@@ -16,6 +16,12 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import 'cypress-mochawesome-reporter/register'
+import './FRONTUsuarios'
+import './APIUsuarios'
+import './APIProdutos'
+import './APICarrinhos'
+require('cypress-xpath');
+
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

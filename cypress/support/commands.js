@@ -24,6 +24,8 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+/// <reference types="cypress-xpath" />
+
 Cypress.Commands.overwrite('request',(originalFn, ...options) => {
     if(options.length == 1){
         if(Cypress.env('auth')){

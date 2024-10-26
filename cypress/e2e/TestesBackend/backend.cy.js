@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-import '../../support/APIUsuarios'
-import '../../support/APIProdutos'
-import '../../support/APICarrinhos'
 import * as utilities from '../../support/utilities'
 
 describe('API Usuarios', () => {
