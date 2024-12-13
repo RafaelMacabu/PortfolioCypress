@@ -4,16 +4,16 @@ let email
 let senha
 
 Cypress.Commands.add('cadastrarUsuario',(user) => {
-    email = user + utilities.createRandomString(5) + '@qa.com.br'
-    senha = user + utilities.createRandomString(5)
-
+    Cypress.env('email',user + utilities.createRandomString(5) + '@qa.com.br')
+    Cypress.env('senha',user + utilities.createRandomString(5))
+    
     cy.request({
         method: 'POST',
         url: '/usuarios',
         body: {
           "nome": user,
-          "email": email,
-          "password": senha,
+          "email": Cypress.env('email'),
+          "password": Cypress.env('senha'),
           "administrador": "true"
         }
       }).as('response')
@@ -31,8 +31,8 @@ Cypress.Commands.add('getToken',() => {
         method:'POST',
         url:'/login',
         body:{
-            "email":email,
-            "password":senha
+            "email":Cypress.env('email'),
+            "password":Cypress.env('senha')
         }
     }).its('body.authorization').should('not.be.empty')
     .then(auth => {
@@ -46,23 +46,23 @@ Cypress.Commands.add('loginUsuario',(email,senha) => {
         method:'POST',
         url:'/login',
         body:{
-            "email":email,
-            "password":senha
+            "email":Cypress.env('email'),
+            "password":Cypress.env('senha')
         }
     })
 })
 
 Cypress.Commands.add('editarUsuario',(user) => {
-    email = user + utilities.createRandomString(5) + '@qa.com.br'
-    senha = user + utilities.createRandomString(5)
+    Cypress.env('email',user + utilities.createRandomString(5) + '@qa.com.br')
+    Cypress.env('senha',user + utilities.createRandomString(5))
 
     return cy.request({
         method: 'PUT',
         url: `/usuarios/${Cypress.env('userId')}`,
         body: {
           "nome": user,
-          "email": email,
-          "password": senha,
+          "email": Cypress.env('email'),
+          "password": Cypress.env('senha'),
           "administrador": "true"
         }
       })

@@ -17,6 +17,7 @@
 import './commands'
 import 'cypress-mochawesome-reporter/register'
 import './FRONTUsuarios'
+import './FRONTProdutos'
 import './APIUsuarios'
 import './APIProdutos'
 import './APICarrinhos'

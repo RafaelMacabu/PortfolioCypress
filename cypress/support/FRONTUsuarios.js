@@ -21,6 +21,12 @@ Cypress.Commands.add('loginUsuarioFront', () => {
         .get('[data-testid="entrar"]').click()
 })
 
+Cypress.Commands.add('loginUsuarioFrontComDadosBackend', () => {
+    cy.get('[data-testid="email"]').type(Cypress.env('email'))
+        .get('[data-testid="senha"]').type(Cypress.env('senha'))
+        .get('[data-testid="entrar"]').click()
+})
+
 Cypress.Commands.add('deletarUsuarioFront', () => {
     cy.get('[data-testid="listar-usuarios"]').click()
     cy.xpath(`//td[text()='${email}']//following-sibling::td//div//button[@class = 'btn btn-danger']`).click()

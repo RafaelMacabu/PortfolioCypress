@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('FUNCTIONAL', () => {
+describe('FUNCTIONAL Usuarios', () => {
     beforeEach(() => {
         cy.visit("https://front.serverest.dev")
     })
@@ -19,4 +19,20 @@ describe('FUNCTIONAL', () => {
         cy.loginUsuarioFront()
         cy.deletarUsuarioFront()
     })
+})
+
+describe('FUNCTIONAL Produtos', () => {
+    beforeEach(() => {
+        cy.visit("https://front.serverest.dev")
+        cy.cadastrarUsuario('Rafael')
+        cy.loginUsuarioFrontComDadosBackend()
+    })
+
+    it.only('Cadastrar Produto',() => {
+        cy.cadastrarProdutoFront('Placa')
+    })
+
+    afterEach(() => {
+       cy.deletarUsuario()
+    }) 
 })
