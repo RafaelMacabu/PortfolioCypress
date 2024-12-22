@@ -22,9 +22,15 @@ Cypress.Commands.add('loginUsuarioFront', () => {
 })
 
 Cypress.Commands.add('loginUsuarioFrontComDadosBackend', () => {
+    cy.intercept('POST','/login').as('login')
+
     cy.get('[data-testid="email"]').type(Cypress.env('email'))
         .get('[data-testid="senha"]').type(Cypress.env('senha'))
         .get('[data-testid="entrar"]').click()
+
+    cy.wait('@login').then(({request,response}) => {
+        Cypress.env('auth',response.body.authorization.replace('Bearer ',''))
+    })
 })
 
 Cypress.Commands.add('deletarUsuarioFront', () => {

@@ -2,14 +2,14 @@ import * as utilities from './utilities'
 
 let productName
 
-Cypress.Commands.add('cadastrarProduto',(produto) => {
-    productName = `${produto}${utilities.createRandomString(5)}`
+Cypress.Commands.add('cadastrarProduto',(product) => {
+  Cypress.env('productName',product + " " + utilities.createRandomString(5))
 
     cy.request({
       method: 'POST',
       url: '/produtos',
       body: {
-        "nome": productName,
+        "nome": Cypress.env('productName'),
         "preco": 470,
         "descricao": "Mouse",
         "quantidade": 381
@@ -25,14 +25,14 @@ Cypress.Commands.add('cadastrarProduto',(produto) => {
     return cy.get('@response')
 })
 
-Cypress.Commands.add('editarProduto',(produto) => {
-    productName = `${produto}${utilities.createRandomString(5)}`
+Cypress.Commands.add('editarProduto',(product) => {
+  Cypress.env('productName',product + " " + utilities.createRandomString(5))
 
     return cy.request({
         method: 'PUT',
         url: `/produtos/${Cypress.env('productId')}`,
         body: {
-          "nome": productName,
+          "nome": Cypress.env('productName'),
           "preco": 69,
           "descricao": "Teclado",
           "quantidade": 420
@@ -59,4 +59,24 @@ Cypress.Commands.add('deletarProduto',() => {
         method: 'DELETE',
         url: `/produtos/${Cypress.env('productId')}`
       })
+})
+
+Cypress.Commands.add('deletarProdutoPeloNome',() => {
+  cy.request({
+    method: 'GET',
+    url: '/produtos',
+    qs: {
+      "nome": Cypress.env('productName')
+    }
+  }).then(response => {
+    expect(response.body.produtos[0]._id).to.exist
+
+    cy.request({
+      method: 'DELETE',
+      url: `/produtos/${response.body.produtos[0]._id}`,
+      auth: {
+        bearer: Cypress.env('auth')
+      }
+    })
+  })
 })

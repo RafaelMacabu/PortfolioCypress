@@ -28,11 +28,12 @@ describe('FUNCTIONAL Produtos', () => {
         cy.loginUsuarioFrontComDadosBackend()
     })
 
-    it.only('Cadastrar Produto',() => {
+    it('Cadastrar Produto',() => {
         cy.cadastrarProdutoFront('Placa')
     })
 
     afterEach(() => {
+       cy.deletarProdutoPeloNome()
        cy.deletarUsuario()
     }) 
 })
