@@ -16,6 +16,7 @@ module.exports = {
   },
   e2e: {
     baseUrl: "https://serverest.dev",
+    defaultCommandTimeout: 6000,
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);    
     },

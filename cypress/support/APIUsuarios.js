@@ -88,3 +88,19 @@ Cypress.Commands.add('deletarUsuario',() => {
         url:`/usuarios/${Cypress.env('userId')}`
     })
 })
+
+Cypress.Commands.add('deletarUsuarioPeloEmail',() => {
+    cy.request({
+        method:'GET',
+        url:'/usuarios',
+        qs: {
+            email:Cypress.env('email')
+        }
+    }).then(response => {
+        cy.request({
+            method:'DELETE',
+            url:`/usuarios/${response.body.usuarios[0]._id}`
+        })
+    })
+})
+

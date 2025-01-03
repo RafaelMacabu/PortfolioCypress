@@ -10,7 +10,9 @@ Cypress.Commands.add('cadastrarProdutoFront', (product) => {
     .get('[data-testid="quantity"]').type("20")
 
     cy.intercept('POST','/produtos').as('cadastrandoProduto')
+    cy.intercept('GET','/produtos').as('listaProduto')
     cy.get('[data-testid="cadastarProdutos"]').click()
     cy.wait('@cadastrandoProduto')
-
+    cy.wait('@listaProduto')
+    cy.xpath(`//td[text()='${Cypress.env('productName')}']`).should('exist')
 })
