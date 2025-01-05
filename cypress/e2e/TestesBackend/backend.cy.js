@@ -8,15 +8,15 @@ describe('API Usuarios', () => {
   })
 
   it('POST Usuarios', () => {
-    cy.cadastrarUsuario('Rafael').its('body.message').should('be.equal',"Cadastro realizado com sucesso")
+    cy.cadastrarUsuario('Rafael').its('body.message').should('be.equal', "Cadastro realizado com sucesso")
     cy.getToken()
   })
- 
+
   it('PUT Usuarios', () => {
     cy.editarUsuario('Andre').as('response')
 
     cy.get('@response').then(response => {
-      expect(response.body.message).to.be.equal('Registro alterado com sucesso')        
+      expect(response.body.message).to.be.equal('Registro alterado com sucesso')
     })
   })
 
@@ -35,7 +35,7 @@ describe('API Usuarios', () => {
 })
 
 describe('API Produtos', () => {
-  before('Setup',() => {
+  before('Setup', () => {
     cy.cadastrarUsuario('Rafael')
     cy.getToken()
   })
@@ -45,7 +45,7 @@ describe('API Produtos', () => {
   })
 
   it('POST Produtos', () => {
-    cy.cadastrarProduto('Bola').its('body.message').should('be.equal','Cadastro realizado com sucesso')
+    cy.cadastrarProduto('Bola').its('body.message').should('be.equal', 'Cadastro realizado com sucesso')
   })
 
   it('PUT Produtos', () => {
@@ -63,40 +63,40 @@ describe('API Produtos', () => {
       expect(response.body._id).to.be.equal(`${Cypress.env('productId')}`)
     })
   })
-  
+
   it('DELETE Produtos', () => {
     cy.deletarProduto().its('body.message').should('be.equal', 'Registro excluído com sucesso')
   })
 
-  after('Cleanup',() => {
+  after('Cleanup', () => {
     cy.deletarUsuario()
   })
 })
 
-describe('API Carrinhos',() => {
-  before('Setup',() => {
+describe('API Carrinhos', () => {
+  before('Setup', () => {
     cy.cadastrarUsuario('Rafael')
     cy.getToken()
     cy.cadastrarProduto('Garrafa')
   })
 
-  it('GET Carrinhos',() => {
-    cy.acharCarrinhos().its('body.quantidade').should('be.at.least',1)
+  it('GET Carrinhos', () => {
+    cy.acharCarrinhos().its('body.quantidade').should('be.at.least', 1)
   })
 
-  it('POST Carrinhos',() => {
-    cy.cadastrarCarrinho().its('body.message').should('be.equal',"Cadastro realizado com sucesso")
+  it('POST Carrinhos', () => {
+    cy.cadastrarCarrinho().its('body.message').should('be.equal', "Cadastro realizado com sucesso")
   })
 
-  it('GET Carrinhos por ID',() => {
+  it('GET Carrinhos por ID', () => {
     cy.acharCarrinhosPorId().its('body.produtos[0].idProduto').should('exist')
   })
 
-  it('DELETE Carrinhos',() => {
-    cy.concluirCompraCarrinho().its('body.message').should('be.equal',"Registro excluído com sucesso")
+  it('DELETE Carrinhos', () => {
+    cy.concluirCompraCarrinho().its('body.message').should('be.equal', "Registro excluído com sucesso")
   })
 
-  after('Cleanup',() => {
+  after('Cleanup', () => {
     cy.deletarProduto()
     cy.deletarUsuario()
   })

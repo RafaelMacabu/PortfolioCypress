@@ -8,20 +8,20 @@ describe('FUNCTIONAL Usuarios', () => {
     it('Cadastrando um novo usuario', () => {
         cy.cadastrarUsuarioFront('Rafael')
 
-        cy.get('.alert').should('contain','sucesso')
+        cy.get('.alert').should('contain', 'sucesso')
     })
 
     it('Fazendo login', () => {
         cy.loginUsuarioFront()
 
-        cy.xpath("//p[@class='lead']").should('have.text','Este é seu sistema para administrar seu ecommerce.')
+        cy.xpath("//p[@class='lead']").should('have.text', 'Este é seu sistema para administrar seu ecommerce.')
     })
 
-    it('Tentando deletar o proprio usuario',() => {
+    it('Tentando deletar o proprio usuario', () => {
         cy.loginUsuarioFront()
         cy.deletarUsuarioFront()
-        
-        cy.get('.alert').should('contain.text','Não é possível excluir o próprio usuário!')
+
+        cy.get('.alert').should('contain.text', 'Não é possível excluir o próprio usuário!')
     })
 
     after(() => {
@@ -36,12 +36,12 @@ describe('FUNCTIONAL Produtos', () => {
         cy.loginUsuarioFrontComDadosBackend()
     })
 
-    it('Cadastrando produto e verificando sua presenca',() => {
+    it('Cadastrando produto e verificando sua presenca', () => {
         cy.cadastrarProdutoFront('Placa')
     })
 
     afterEach(() => {
-       cy.deletarProdutoPeloNome()
-       cy.deletarUsuario()
-    }) 
+        cy.deletarProdutoPeloNome()
+        cy.deletarUsuario()
+    })
 })
