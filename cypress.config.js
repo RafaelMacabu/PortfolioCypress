@@ -2,17 +2,14 @@ const { defineConfig } = require("cypress");
 
 module.exports = {
   reporter: 'cypress-mochawesome-reporter',
-  video: false,
+  video: true,
   reporterOptions: {
-
     charts: true,
-
-    reportPageTitle: 'Projeto Cypress',
-
+    reportPageTitle: 'Portfólio Cypress Rafael Macabu',
+    timestamp: "longDate",
     embeddedScreenshots: true, 
-
-    inlineAssets: true, //Adds the asserts inline
-
+    inlineAssets: true,
+    saveAllAttempts: true
   },
   e2e: {
     baseUrl: "https://serverest.dev",

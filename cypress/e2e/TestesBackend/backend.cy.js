@@ -2,22 +2,18 @@
 
 import * as utilities from '../../support/utilities'
 
-describe('API Usuarios', () => {
+describe('BACKEND API Usuarios', () => {
   it('GET Usuarios', () => {
     cy.acharUsuarios().its('body.quantidade').should('be.at.least', 1)
   })
 
   it('POST Usuarios', () => {
     cy.cadastrarUsuario('Rafael').its('body.message').should('be.equal', "Cadastro realizado com sucesso")
-    cy.getToken()
   })
 
   it('PUT Usuarios', () => {
-    cy.editarUsuario('Andre').as('response')
-
-    cy.get('@response').then(response => {
-      expect(response.body.message).to.be.equal('Registro alterado com sucesso')
-    })
+    cy.getToken()
+    cy.editarUsuario('Andre').its('body.message').should('be.equal','Registro alterado com sucesso')
   })
 
   it('GET Usuarios por ID', () => {
@@ -34,7 +30,7 @@ describe('API Usuarios', () => {
   })
 })
 
-describe('API Produtos', () => {
+describe('BACKEND API Produtos', () => {
   before('Setup', () => {
     cy.cadastrarUsuario('Rafael')
     cy.getToken()
@@ -73,7 +69,7 @@ describe('API Produtos', () => {
   })
 })
 
-describe('API Carrinhos', () => {
+describe('BACKEND API Carrinhos', () => {
   before('Setup', () => {
     cy.cadastrarUsuario('Rafael')
     cy.getToken()

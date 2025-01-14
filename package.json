@@ -175,7 +175,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome --headed"
+    "cy:run": "cypress run --browser firefox"
   },
   "author": "Rafael Macabu",
   "license": "ISC",

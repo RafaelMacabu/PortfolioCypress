@@ -5,19 +5,19 @@ describe('FUNCTIONAL Usuarios', () => {
         cy.visit("https://front.serverest.dev")
     })
 
-    it('Cadastrando um novo usuario', () => {
+    it('Cadastrando um novo usuário', () => {
         cy.cadastrarUsuarioFront('Rafael')
 
         cy.get('.alert').should('contain', 'sucesso')
     })
 
-    it('Fazendo login', () => {
+    it('Fazendo login com esse novo usuário', () => {
         cy.loginUsuarioFront()
 
         cy.xpath("//p[@class='lead']").should('have.text', 'Este é seu sistema para administrar seu ecommerce.')
     })
 
-    it('Tentando deletar o proprio usuario', () => {
+    it('Tentando deletar o próprio usuário', () => {
         cy.loginUsuarioFront()
         cy.deletarUsuarioFront()
 
@@ -36,7 +36,7 @@ describe('FUNCTIONAL Produtos', () => {
         cy.loginUsuarioFrontComDadosBackend()
     })
 
-    it('Cadastrando produto e verificando sua presenca', () => {
+    it('Cadastrando produto e verificando sua presença na lista', () => {
         cy.cadastrarProdutoFront('Placa')
     })
 
