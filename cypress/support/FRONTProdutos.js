@@ -1,6 +1,6 @@
 import * as utilities from './utilities'
 
-Cypress.Commands.add('cadastrarProdutoFront', (product) => {
+Cypress.Commands.add('cadastrarProduto', (product) => {
     Cypress.env('productName', product + " " + utilities.createRandomString(5))
 
     cy.get('[data-testid="cadastrar-produtos"]').click()

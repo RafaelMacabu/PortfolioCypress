@@ -4,20 +4,20 @@ import * as utilities from '../../support/utilities'
 
 describe('BACKEND API Usuarios', () => {
   it('GET Usuarios', () => {
-    cy.acharUsuarios().its('body.quantidade').should('be.at.least', 1)
+    cy.GETUsuarios().its('body.quantidade').should('be.at.least', 1)
   })
 
   it('POST Usuarios', () => {
-    cy.cadastrarUsuario('Rafael').its('body.message').should('be.equal', "Cadastro realizado com sucesso")
+    cy.POSTUsuarios('Rafael').its('body.message').should('be.equal', "Cadastro realizado com sucesso")
   })
 
   it('PUT Usuarios', () => {
     cy.getToken()
-    cy.editarUsuario('Andre').its('body.message').should('be.equal','Registro alterado com sucesso')
+    cy.PUTUsuarios('Andre').its('body.message').should('be.equal','Registro alterado com sucesso')
   })
 
   it('GET Usuarios por ID', () => {
-    cy.acharUsuarioPorId().as('response')
+    cy.GETUsuariosPorId().as('response')
 
     cy.get('@response').then(response => {
       expect(response.body.nome).to.be.equal('Andre')
@@ -26,30 +26,30 @@ describe('BACKEND API Usuarios', () => {
   })
 
   it('DELETE Usuarios', () => {
-    cy.deletarUsuario().its('body.message').should('be.equal', 'Registro excluído com sucesso')
+    cy.DELETEUsuarios().its('body.message').should('be.equal', 'Registro excluído com sucesso')
   })
 })
 
 describe('BACKEND API Produtos', () => {
   before('Setup', () => {
-    cy.cadastrarUsuario('Rafael')
+    cy.POSTUsuarios('Rafael')
     cy.getToken()
   })
 
   it('GET Produtos', () => {
-    cy.acharProdutos().its('body.quantidade').should('be.at.least', 1)
+    cy.GETProdutos().its('body.quantidade').should('be.at.least', 1)
   })
 
   it('POST Produtos', () => {
-    cy.cadastrarProduto('Bola').its('body.message').should('be.equal', 'Cadastro realizado com sucesso')
+    cy.POSTProdutos('Bola').its('body.message').should('be.equal', 'Cadastro realizado com sucesso')
   })
 
   it('PUT Produtos', () => {
-    cy.editarProduto('Quadrado').its("body.message").should("be.equal", 'Registro alterado com sucesso')
+    cy.PUTProdutos('Quadrado').its("body.message").should("be.equal", 'Registro alterado com sucesso')
   })
 
   it('GET Produtos por ID', () => {
-    cy.acharProdutoPorId().as('response')
+    cy.GETProdutosPorId().as('response')
 
     cy.get('@response').then(response => {
       expect(response.body.nome).to.contain("Quadrado")
@@ -61,39 +61,39 @@ describe('BACKEND API Produtos', () => {
   })
 
   it('DELETE Produtos', () => {
-    cy.deletarProduto().its('body.message').should('be.equal', 'Registro excluído com sucesso')
+    cy.DELETEProdutos().its('body.message').should('be.equal', 'Registro excluído com sucesso')
   })
 
   after('Cleanup', () => {
-    cy.deletarUsuario()
+    cy.DELETEUsuarios()
   })
 })
 
 describe('BACKEND API Carrinhos', () => {
   before('Setup', () => {
-    cy.cadastrarUsuario('Rafael')
+    cy.POSTUsuarios('Rafael')
     cy.getToken()
-    cy.cadastrarProduto('Garrafa')
+    cy.POSTProdutos('Garrafa')
   })
 
   it('GET Carrinhos', () => {
-    cy.acharCarrinhos().its('body.quantidade').should('be.at.least', 1)
+    cy.GETCarrinhos().its('body.quantidade').should('be.at.least', 1)
   })
 
   it('POST Carrinhos', () => {
-    cy.cadastrarCarrinho().its('body.message').should('be.equal', "Cadastro realizado com sucesso")
+    cy.POSTCarrinhos().its('body.message').should('be.equal', "Cadastro realizado com sucesso")
   })
 
   it('GET Carrinhos por ID', () => {
-    cy.acharCarrinhosPorId().its('body.produtos[0].idProduto').should('exist')
+    cy.GETCarrinhosPorId().its('body.produtos[0].idProduto').should('exist')
   })
 
   it('DELETE Carrinhos', () => {
-    cy.concluirCompraCarrinho().its('body.message').should('be.equal', "Registro excluído com sucesso")
+    cy.DELETECarrinhosConcluir().its('body.message').should('be.equal', "Registro excluído com sucesso")
   })
 
   after('Cleanup', () => {
-    cy.deletarProduto()
-    cy.deletarUsuario()
+    cy.DELETEProdutos()
+    cy.DELETEUsuarios()
   })
 })

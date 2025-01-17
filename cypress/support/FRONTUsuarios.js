@@ -3,7 +3,7 @@ import * as utilities from './utilities'
 let email
 let senha
 
-Cypress.Commands.add('cadastrarUsuarioFront', (user) => {
+Cypress.Commands.add('cadastrarUsuario', (user) => {
     Cypress.env('email', user + utilities.createRandomString(5) + '@qa.com.br')
     Cypress.env('senha', user + utilities.createRandomString(5))
 
@@ -16,21 +16,21 @@ Cypress.Commands.add('cadastrarUsuarioFront', (user) => {
 
 })
 
-Cypress.Commands.add('loginUsuarioFront', () => {
+Cypress.Commands.add('loginUsuario', () => {
     cy.get('[data-testid="email"]').type(Cypress.env('email'))
         .get('[data-testid="senha"]').type(Cypress.env('senha'))
         .get('[data-testid="entrar"]').click()
 
 })
 
-Cypress.Commands.add('loginUsuarioFrontPre', (nome) => {
+Cypress.Commands.add('loginUsuarioSet', (nome) => {
     cy.get('[data-testid="email"]').type(nome + '@qa.com')
         .get('[data-testid="senha"]').type(nome + '123')
         .get('[data-testid="entrar"]').click()
 
 })
 
-Cypress.Commands.add('loginUsuarioFrontComDadosBackend', () => {
+Cypress.Commands.add('loginUsuarioComDadosBackend', () => {
     cy.intercept('POST', '/login').as('login')
 
     cy.get('[data-testid="email"]').type(Cypress.env('email'))
@@ -42,7 +42,7 @@ Cypress.Commands.add('loginUsuarioFrontComDadosBackend', () => {
     })
 })
 
-Cypress.Commands.add('deletarUsuarioFront', () => {
+Cypress.Commands.add('deletarUsuario', () => {
     cy.get('[data-testid="listar-usuarios"]').click()
     cy.xpath(`//td[text()='${Cypress.env('email')}']//following-sibling::td//div//button[@class = 'btn btn-danger']`).click().click()
 })

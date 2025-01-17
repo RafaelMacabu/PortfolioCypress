@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = {
   reporter: 'cypress-mochawesome-reporter',
-  video: true,
+  video: false,
   reporterOptions: {
     charts: true,
     reportPageTitle: 'Portfólio Cypress Rafael Macabu',

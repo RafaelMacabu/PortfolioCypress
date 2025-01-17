@@ -1,13 +1,13 @@
 import * as utilities from './utilities'
 
-Cypress.Commands.add('acharCarrinhos', () => {
+Cypress.Commands.add('GETCarrinhos', () => {
   return cy.request({
     method: 'GET',
     url: '/carrinhos'
   })
 })
 
-Cypress.Commands.add('acharCarrinhosPorId', () => {
+Cypress.Commands.add('GETCarrinhosPorId', () => {
   cy.request({
     method: 'GET',
     url: `/carrinhos/${Cypress.env('cartId')}`
@@ -18,7 +18,7 @@ Cypress.Commands.add('acharCarrinhosPorId', () => {
   })
 })
 
-Cypress.Commands.add('cadastrarCarrinho', () => {
+Cypress.Commands.add('POSTCarrinhos', () => {
   cy.request({
     method: 'POST',
     url: '/carrinhos',
@@ -41,7 +41,7 @@ Cypress.Commands.add('cadastrarCarrinho', () => {
   return cy.get('@response')
 })
 
-Cypress.Commands.add('concluirCompraCarrinho', () => {
+Cypress.Commands.add('DELETECarrinhosConcluir', () => {
   return cy.request({
     method: 'DELETE',
     url: `/carrinhos/concluir-compra`

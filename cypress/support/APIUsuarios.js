@@ -3,7 +3,7 @@ import * as utilities from './utilities'
 let email
 let senha
 
-Cypress.Commands.add('cadastrarUsuario',(user) => {
+Cypress.Commands.add('POSTUsuarios',(user) => {
     Cypress.env('email',user + utilities.createRandomString(5) + '@qa.com.br')
     Cypress.env('senha',user + utilities.createRandomString(5))
     
@@ -41,7 +41,7 @@ Cypress.Commands.add('getToken',() => {
     })
 })
 
-Cypress.Commands.add('loginUsuario',(email,senha) => {
+Cypress.Commands.add('POSTLogin',(email,senha) => {
     return cy.request({
         method:'POST',
         url:'/login',
@@ -52,7 +52,7 @@ Cypress.Commands.add('loginUsuario',(email,senha) => {
     })
 })
 
-Cypress.Commands.add('editarUsuario',(user) => {
+Cypress.Commands.add('PUTUsuarios',(user) => {
     Cypress.env('email',user + utilities.createRandomString(5) + '@qa.com.br')
     Cypress.env('senha',user + utilities.createRandomString(5))
 
@@ -68,28 +68,34 @@ Cypress.Commands.add('editarUsuario',(user) => {
       })
 })
 
-Cypress.Commands.add('acharUsuarios',() => {
+Cypress.Commands.add('GETUsuarios',() => {
     return cy.request({
         method: 'GET',
         url: `/usuarios`
       }).as('response')
 })
 
-Cypress.Commands.add('acharUsuarioPorId',() => {
+Cypress.Commands.add('GETUsuariosPorId',() => {
     return cy.request({
         method: 'GET',
         url: `/usuarios/${Cypress.env('userId')}`
       }).as('response')
 })
 
-Cypress.Commands.add('deletarUsuario',() => {
-    return cy.request({
-        method:'DELETE',
-        url:`/usuarios/${Cypress.env('userId')}`
-    })
+Cypress.Commands.add('DELETEUsuarios',() => {
+    if(Cypress.env('userId') == null){
+        cy.addTestContext('ID Invalido')
+        throw new Error('ID de usuario invalido para deletar')
+        
+    }else{
+        return cy.request({
+            method:'DELETE',
+            url:`/usuarios/${Cypress.env('userId')}`
+        })
+    }
 })
 
-Cypress.Commands.add('deletarUsuarioPeloEmail',() => {
+Cypress.Commands.add('DELETEUsuariosPeloEmail',() => {
     cy.request({
         method:'GET',
         url:'/usuarios',

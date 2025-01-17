@@ -3,7 +3,7 @@
 describe('FRONTEND Usuarios', () => {
     beforeEach(() => {
         cy.visit("https://front.serverest.dev")
-        cy.cadastrarUsuarioFront("Rafael")
+        cy.cadastrarUsuario("Rafael")
     })
 
     it('Verificando elementos da tela de cadastro', () => {
@@ -17,14 +17,14 @@ describe('FRONTEND Usuarios', () => {
     })
 
     afterEach(() => {
-        cy.deletarUsuarioPeloEmail()
+        cy.DELETEUsuariosPeloEmail()
     })
 })
 
 describe('FRONTEND Produtos', () => {
     beforeEach(() => {
         cy.visit("https://front.serverest.dev")
-        cy.cadastrarUsuarioFront("Rafael")
+        cy.cadastrarUsuario("Rafael")
     })
 
     it('Verificando elementos da tela de cadastro de produto', () => {
@@ -38,6 +38,6 @@ describe('FRONTEND Produtos', () => {
     })
 
     afterEach(() => {
-        cy.deletarUsuarioPeloEmail()
+        cy.DELETEUsuariosPeloEmail()
     })
 })
