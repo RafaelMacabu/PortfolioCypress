@@ -17,6 +17,7 @@ describe('FRONTEND Usuarios', () => {
     })
 
     afterEach(() => {
+        cy.screenshot()
         cy.DELETEUsuariosPeloEmail()
     })
 })
@@ -38,6 +39,7 @@ describe('FRONTEND Produtos', () => {
     })
 
     afterEach(() => {
+        cy.screenshot()
         cy.DELETEUsuariosPeloEmail()
     })
 })

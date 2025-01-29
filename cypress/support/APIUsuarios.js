@@ -84,9 +84,8 @@ Cypress.Commands.add('GETUsuariosPorId',() => {
 
 Cypress.Commands.add('DELETEUsuarios',() => {
     if(Cypress.env('userId') == null){
-        cy.addTestContext('ID Invalido')
-        throw new Error('ID de usuario invalido para deletar')
-        
+        cy.addTestContext('ID de usuário inválido')
+        throw new Error('ID de usuário inválido para deletar')
     }else{
         return cy.request({
             method:'DELETE',

@@ -27,6 +27,10 @@ describe('FUNCTIONAL Usuarios', () => {
     after(() => {
         cy.DELETEUsuariosPeloEmail()
     })
+
+    afterEach(() => {
+        cy.screenshot()
+    })
 })
 
 describe('FUNCTIONAL Produtos', () => {
@@ -41,6 +45,7 @@ describe('FUNCTIONAL Produtos', () => {
     })
 
     afterEach(() => {
+        cy.screenshot()
         cy.DELETEProdutosPeloNome()
         cy.deletarUsuario()
     })
