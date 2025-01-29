@@ -2,7 +2,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = {
   reporter: 'cypress-mochawesome-reporter',
-  video: true,
+  video: false,
   screenshotsFolder: 'cypress/reports/images',
   reporterOptions: {
     charts: true,
@@ -10,8 +10,7 @@ module.exports = {
     timestamp: "longDate",
     embeddedScreenshots: true, 
     inlineAssets: true,
-    saveAllAttempts: true,
-    videoOnFailOnly: true
+    saveAllAttempts: true
   },
   e2e: {
     baseUrl: "https://serverest.dev",
