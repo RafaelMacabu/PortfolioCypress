@@ -13,3 +13,10 @@ jobs:
         with:
           start: npm run cy:run
           browser: firefox
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v4
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./reports/html
