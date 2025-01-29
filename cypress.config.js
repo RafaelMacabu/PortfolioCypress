@@ -6,7 +6,7 @@ module.exports = {
   screenshotsFolder: 'cypress/reports/images',
   reporterOptions: {
     charts: true,
-    reportPageTitle: 'Portfólio Cypress Rafael Macabu',
+    reportPageTitle: 'Portfólio Cypress Rafael Macabuu',
     timestamp: "longDate",
     embeddedScreenshots: true, 
     inlineAssets: true,
