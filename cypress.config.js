@@ -7,7 +7,6 @@ module.exports = {
   reporterOptions: {
     charts: true,
     reportPageTitle: 'Portfólio Cypress Rafael Macabuu',
-    timestamp: "longDate",
     embeddedScreenshots: true, 
     inlineAssets: true,
     saveAllAttempts: true
