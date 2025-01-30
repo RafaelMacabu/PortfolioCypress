@@ -5,7 +5,6 @@ node_modules
 .npmrc
 .idea
 examples/*/package-lock.json
-cypress/reports
 cypress/results
 cypress/screenshots
 cypress/videos
