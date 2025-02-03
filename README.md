@@ -2,6 +2,7 @@
 
 # Projeto Cypress
 [**Demonstração em vídeo do projeto**](https://www.linkedin.com/feed/update/urn:li:activity:7291088704444506112/)
+
 Feito com base na aplicação [**ServeRest**](https://serverest.dev/)
 
 ## Tecnologias Usadas
