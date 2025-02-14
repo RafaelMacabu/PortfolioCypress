@@ -1,6 +1,8 @@
 ![Logo Cypress](https://github.com/user-attachments/assets/12911399-52c0-4b63-b4fc-d43b1c0ccc54)
 
 # Projeto Cypress
+![My Skills](https://go-skill-icons.vercel.app/api/icons?i=cypress,githubactions)
+
 [**Demonstração em vídeo do projeto**](https://www.linkedin.com/feed/update/urn:li:activity:7291088704444506112/)
 
 Feito com base na aplicação [**ServeRest**](https://serverest.dev/)
